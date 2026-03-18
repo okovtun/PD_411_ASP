@@ -14,7 +14,7 @@
 
 <input type="text" placeholder="Что Вы хотите сделать?" 
 		@bind="task" 
-		@onkeyup='( KeyboardEventArgs e) => {if(e.Key == "Enter")AddTask();}' />
+		@onkeyup='( KeyboardEventArgs e) => {if(e.Key == "Enter" && !todos.Contains(new TODOitem{Title=task}))AddTask();}' />
 <button @onclick="AddTask">Добавить</button>
 
 <ul>

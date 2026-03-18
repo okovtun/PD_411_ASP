@@ -4,7 +4,7 @@ namespace TODOlist.Components.Pages
 {
 	public partial class TODO
 	{
-		List<TODOitem> todos = [];
+		HashSet<TODOitem> todos = [];
 		string task;
 		void AddTask()
 		{
