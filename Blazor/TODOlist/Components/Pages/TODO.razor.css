@@ -1,0 +1,16 @@
+﻿ul
+{
+	list-style:none;
+}
+.complete-task
+{
+	text-decoration:line-through;
+	color:gray;
+}
+.statistics
+{
+	display:flex;
+	justify-content:space-around;
+	font-size:24px;
+	margin:32px;
+}

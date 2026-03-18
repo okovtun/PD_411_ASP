@@ -2,6 +2,10 @@
 https://www.youtube.com/playlist?list=PLeqyOOqxeiIOomneIs-QvkQFqTkBUdJdo
 
 TODO:
+1. Напомнить про значки;
+2. Задачи не должны повторяться;
+
+DONE:
 1. В проект 'Blazor' добавить компонент 'Power', который возводит число в степень;
 2. В проект 'Blazor' добавить компонент 'Fibonacci', который выводит ряд Фибоначчи;
 3. Для компонентов 'Power', 'Factorial' и 'Fibonacci' в NavMenu использовать свои значки;
