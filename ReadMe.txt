@@ -4,6 +4,14 @@ https://www.youtube.com/playlist?list=PLeqyOOqxeiIOomneIs-QvkQFqTkBUdJdo
 TODO:
 1. Напомнить про значки;
 2. Задачи не должны повторяться;
+3. В Solution 'Blazor' добавить проект 'Converter', и в этом проекте реализовать преобразование чисел:
+	Dec2Bin;
+	Dec2Hex;
+	Bin2Dec;
+	Hex2Dec;
+
+	Bin2Hex;
+	Hex2Bin;
 
 DONE:
 1. В проект 'Blazor' добавить компонент 'Power', который возводит число в степень;

@@ -22,8 +22,8 @@
 		}
 		public int GetHashCode(TODOitem other)
 		{
-			return other.Title.GetHashCode();
-			//return HashCode.Combine(Title);
+			//return other.Title.GetHashCode();
+			return HashCode.Combine(Title);
 		}
 	}
 }

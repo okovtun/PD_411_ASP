@@ -23,6 +23,7 @@
 		<li class=@(!i.DONE ? "" : "complete-task")>
 			<input type="checkbox" @bind="i.DONE" id=@i.GetHashCode().ToString() /> 
 			<label for=@i.GetHashCode().ToString()>@i.Title</label>
+			<button class="delete" @onclick='() => { todos.Remove(i); }'>❌</button>
 		</li>
 	}
 </ul>
