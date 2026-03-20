@@ -2,6 +2,14 @@
 https://www.youtube.com/playlist?list=PLeqyOOqxeiIOomneIs-QvkQFqTkBUdJdo
 
 TODO:
+1. Скачать и установить Notepad++
+	https://notepad-plus-plus.org/
+2.
+
+SVG:
+https://stackoverflow.com/questions/10768451/inline-svg-in-css
+
+DONE:
 1. Напомнить про значки;
 2. Задачи не должны повторяться;
 3. В Solution 'Blazor' добавить проект 'Converter', и в этом проекте реализовать преобразование чисел:
