@@ -1,10 +1,15 @@
 ﻿https://github.com/okovtun/PD_411_ASP.git
 https://www.youtube.com/playlist?list=PLeqyOOqxeiIOomneIs-QvkQFqTkBUdJdo
 
+Appearance:
+https://uiverse.io/elements
+https://ant.design/components/divider
+
 TODO:
 1. Скачать и установить Notepad++
 	https://notepad-plus-plus.org/
-2.
+2. Подгрузить SVG-значек прямо из SVG-файла;
+3. Подгрузить в качестве иконки растровое изображение, например '*.png';
 
 SVG:
 https://stackoverflow.com/questions/10768451/inline-svg-in-css
