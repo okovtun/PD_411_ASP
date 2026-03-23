@@ -1,0 +1,12 @@
+﻿.info 
+{
+	display:flex;
+}
+	.info .name
+	{
+		min-width:32%;
+	}
+	.info .value
+	{
+		min-width:32%;
+	}

@@ -37,6 +37,18 @@ else
                     <InputText id="genre" @bind-Value="Movie.Genre" class="form-control" />
                     <ValidationMessage For="() => Movie.Genre" class="text-danger" />
                 </div>
+                <div class="mb-3">
+                    <label for="url" class="form-label">URL:</label>
+                    <InputText id="url" @bind-Value="Movie.URL" class="form-control" />
+                    <ValidationMessage For="() => Movie.URL" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="poster" class="form-label">Poster:</label>
+                    <InputText id="poster" @bind-Value="Movie.Poster" class="form-control" />
+                    <ValidationMessage For="() => Movie.Poster" class="text-danger" />
+                </div>
+
+
                 <button type="submit" class="btn btn-primary">Save</button>
             </EditForm>
         </div>

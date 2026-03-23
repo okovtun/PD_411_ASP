@@ -5,11 +5,14 @@ Appearance:
 https://uiverse.io/elements
 https://ant.design/components/divider
 
+URL:
+https://aspnet.github.io/quickgridsamples/columns/#:~:text=QuickGrid%20has%20two%20built%2Din,so%20you%20must%20specify%20it.
+
 TODO:
-1. При добавлении/изменении киношки должна быть возможность загружать изображение;
+1. При добавлении/изменении киношки должна быть возможность загружать изображение;	DONE
 2. Добавить brief(краткое описание);
 3. Киношки в таблице должны отображаться в виде ссылок на Википедию, или другой внешний ресурс;
-4. Из таблы уьрать кнопку 'Delete';
+4. Из таблы убрать кнопку 'Delete'; DONE
 
 DONE:
 1. Скачать и установить Notepad++
