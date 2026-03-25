@@ -1,0 +1,10 @@
+﻿.controls
+{
+	display:flex;
+	justify-content:space-between;
+}
+	.controls select
+	{
+		width:48px;
+		height:25px;
+	}
