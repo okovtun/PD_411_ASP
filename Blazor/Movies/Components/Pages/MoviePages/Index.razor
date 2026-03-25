@@ -22,7 +22,7 @@
 	</form>
 	<div>
 		<label for="items-per-page">Items per page: </label>
-		<select id="items-per-page" @bind="pagination.ItemsPerPage" >
+		<select id="items-per-page" @bind="pagination.ItemsPerPage">
 			<option value="3">3</option>
 			<option value="5">5</option>
 			<option value="8">8</option>
@@ -31,28 +31,29 @@
 	</div>
 </div>
 
-<QuickGrid Class="table" Items="FilteredMovies" Pagination="pagination">
-	@* <PropertyColumn Sortable="true" Property="movie => movie.Title" ></PropertyColumn> *@
-	<TemplateColumn 
-	Title="Title"
-	Sortable="true" 
-	InitialSortDirection="SortDirection.Ascending"
-	IsDefaultSortColumn="true"
-	SortBy="sortBy"
-	>
-		<a href="@($"movies/details?id={context.Id}")">@context.Title</a>
-	</TemplateColumn>
-	<PropertyColumn Sortable="true" Property="movie => movie.ReleaseDate" />
-	<PropertyColumn Sortable="true" Property="movie => movie.Genre" />
+<div>
+	<QuickGrid Class="table" Items="FilteredMovies" Pagination="pagination">
+		@* <PropertyColumn Sortable="true" Property="movie => movie.Title" ></PropertyColumn> *@
+		<TemplateColumn Title="Title"
+						Class="movie-title"
+						Sortable="true"
+						InitialSortDirection="SortDirection.Ascending"
+						IsDefaultSortColumn="true"
+						SortBy="sortBy">
+			<a href="@($"movies/details?id={context.Id}")">@context.Title</a>
+		</TemplateColumn>
+		<PropertyColumn Class="release-date" Sortable="true" Property="movie => movie.ReleaseDate" />
+		<PropertyColumn Class="genre" Sortable="true" Property="movie => movie.Genre" />
 
 
-	@* <TemplateColumn Context="movie">
-        <a href="@($"movies/edit?id={movie.Id}")">Edit</a> |
-        <a href="@($"movies/details?id={movie.Id}")">Details</a> |
-        <a href="@($"movies/delete?id={movie.Id}")">Delete</a>
-    </TemplateColumn> *@
-</QuickGrid>
-<Paginator State="pagination" />
+		@* <TemplateColumn Context="movie">
+		<a href="@($"movies/edit?id={movie.Id}")">Edit</a> |
+		<a href="@($"movies/details?id={movie.Id}")">Details</a> |
+		<a href="@($"movies/delete?id={movie.Id}")">Delete</a>
+		</TemplateColumn> *@
+	</QuickGrid>
+	<Paginator State="pagination" />
+</div>
 
 @code {
 	private MoviesContext context = default!;
