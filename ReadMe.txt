@@ -8,6 +8,13 @@ https://ant.design/components/divider
 URL:
 https://aspnet.github.io/quickgridsamples/columns/#:~:text=QuickGrid%20has%20two%20built%2Din,so%20you%20must%20specify%20it.
 
+Blazor CSS:
+https://stackoverflow.com/questions/77852983/blazor-quickgrid-column-width-how-to-set
+
+TODO:
+1. В проекте 'Blazor\Movies' применить стороннюю тему (внешний вид);
+2. В том же проекте обеспечить переключение тем - светлая/темная;
+
 TODO:
 1. В Solution 'Blazor' добавить проект 'Academy';
 2. К проекту 'Academy' подключить нашу Базу 'PD_321';
