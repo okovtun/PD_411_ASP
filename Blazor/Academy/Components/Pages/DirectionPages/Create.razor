@@ -39,6 +39,14 @@
 @code {
 	[SupplyParameterFromForm]
 	private Direction Direction { get; set; } = new();
+	protected override void OnInitialized()
+	{
+		// base.OnInitialized();
+		using (Academy.Data.AcademyContext context = DbFactory.CreateDbContext())
+		{
+			ID = context.Directions.Max(d => d.direction_id) + 1;	
+		}
+	}
 
 	int id;
 	int ID 
@@ -48,11 +56,12 @@
 			Direction.direction_id = (byte)(id = value); 
 	}
 
-    // To protect from overposting attacks, see https://learn.microsoft.com/aspnet/core/blazor/forms/#mitigate-overposting-attacks.
-    private async Task AddDirection()
-    {
-        using var context = DbFactory.CreateDbContext();
-        context.Directions.Add(Direction);
+	// To protect from overposting attacks, see https://learn.microsoft.com/aspnet/core/blazor/forms/#mitigate-overposting-attacks.
+	private async Task AddDirection()
+	{
+		using var context = DbFactory.CreateDbContext();
+		if (context.Directions.Contains(Direction)) return;
+		context.Directions.Add(Direction);
         await context.SaveChangesAsync();
         NavigationManager.NavigateTo("/directions");
     }

@@ -14,6 +14,7 @@ https://stackoverflow.com/questions/77852983/blazor-quickgrid-column-width-how-t
 TODO:
 1. В проекте 'Blazor\Movies' применить стороннюю тему (внешний вид);
 2. В том же проекте обеспечить переключение тем - светлая/темная;
+3. Запретить добавление дубликатов в таблицу 'Directions';
 
 TODO:
 1. В Solution 'Blazor' добавить проект 'Academy';
