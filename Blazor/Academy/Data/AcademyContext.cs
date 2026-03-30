@@ -15,5 +15,10 @@ namespace Academy.Data
         }
 
         public DbSet<Academy.Models.Direction> Directions { get; set; } = default!;
-    }
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		{
+			//base.OnModelCreating(modelBuilder);
+			modelBuilder.Entity<Direction>().HasIndex(d => new { d.direction_id, d.direction_name }).IsUnique();
+		}
+	}
 }

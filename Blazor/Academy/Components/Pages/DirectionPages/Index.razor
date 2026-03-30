@@ -5,33 +5,36 @@
 @using Academy.Data
 @implements IAsyncDisposable
 @inject IDbContextFactory<Academy.Data.AcademyContext> DbFactory
+@rendermode InteractiveServer
 
 <PageTitle>Index</PageTitle>
 
 <h1>Index</h1>
 
 <p>
-    <a href="directions/create">Create New</a>
+	<a href="directions/create">Create New</a>
 </p>
 
-<QuickGrid Class="table" Items="context.Directions">
-    <PropertyColumn Property="direction => direction.direction_id" />
-    <PropertyColumn Property="direction => direction.direction_name" />
+<QuickGrid Class="table" Items="Directions">
+	<PropertyColumn Property="direction => direction.direction_id" Sortable="true" />
+	<PropertyColumn Property="direction => direction.direction_name" Sortable="true"/>
 
-    <TemplateColumn Context="direction">
-        <a href="@($"directions/edit?direction_id={direction.direction_id}")">Edit</a> |
-        <a href="@($"directions/details?direction_id={direction.direction_id}")">Details</a> |
-        <a href="@($"directions/delete?direction_id={direction.direction_id}")">Delete</a>
-    </TemplateColumn>
+	<TemplateColumn Context="direction">
+		<a href="@($"directions/edit?direction_id={direction.direction_id}")">Edit</a> |
+		<a href="@($"directions/details?direction_id={direction.direction_id}")">Details</a> |
+		<a href="@($"directions/delete?direction_id={direction.direction_id}")">Delete</a>
+	</TemplateColumn>
 </QuickGrid>
 
 @code {
-    private AcademyContext context = default!;
+	private AcademyContext context = default!;
 
-    protected override void OnInitialized()
-    {
-        context = DbFactory.CreateDbContext();
-    }
+	protected override void OnInitialized()
+	{
+		context = DbFactory.CreateDbContext();
+		// context.Directions = context.Directions.OrderBy(d => d.direction_id).ToList();
+	}
 
-    public async ValueTask DisposeAsync() => await context.DisposeAsync();
+	public async ValueTask DisposeAsync() => await context.DisposeAsync();
+	public IQueryable<Direction> Directions => context.Directions.OrderBy(d => d.direction_id);
 }

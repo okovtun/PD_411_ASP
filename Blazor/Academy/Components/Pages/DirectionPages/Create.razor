@@ -60,7 +60,8 @@
 	private async Task AddDirection()
 	{
 		using var context = DbFactory.CreateDbContext();
-		if (context.Directions.Contains(Direction)) return;
+		// if (context.Entry(Direction).Property(d => d.direction_name)) return;
+		// if (context.Directions.Contains()) return;
 		context.Directions.Add(Direction);
         await context.SaveChangesAsync();
         NavigationManager.NavigateTo("/directions");

@@ -1,0 +1,21 @@
+﻿@page "/"
+@rendermode InteractiveServer
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+<ThemeSwitcher Position="DropdownMenuPosition.End" />
+
+@* @code
+{
+    [Inject]
+    ToastService ToastService { get; set; } = default!;
+
+    private void OnThemeChanged(string themeName)
+    {
+        // do something when the theme changes
+        ToastService.Notify(new(ToastType.Success, $"Theme changed to {themeName}"));
+    }
+} *@
