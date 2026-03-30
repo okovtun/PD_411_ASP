@@ -11,10 +11,15 @@ https://aspnet.github.io/quickgridsamples/columns/#:~:text=QuickGrid%20has%20two
 Blazor CSS:
 https://stackoverflow.com/questions/77852983/blazor-quickgrid-column-width-how-to-set
 
+Blazor Themes:
+https://demos.blazorbootstrap.com/getting-started
+https://docs.blazorbootstrap.com/getting-started/blazor-webapp-auto-global-net-8
+https://demos.blazorbootstrap.com/theme-switcher
+
 TODO:
 1. В проекте 'Blazor\Movies' применить стороннюю тему (внешний вид);
 2. В том же проекте обеспечить переключение тем - светлая/темная;
-3. Запретить добавление дубликатов в таблицу 'Directions';
+3. Запретить добавление дубликатов в таблицу 'Directions';			DONE
 
 TODO:
 1. В Solution 'Blazor' добавить проект 'Academy';
