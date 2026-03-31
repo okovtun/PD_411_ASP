@@ -12,13 +12,8 @@ namespace Academy.Models
 		[Required]
 		[UniqueDirectionName(ErrorMessage = "Error: такое направление уже существует")]
 		public string direction_name { get; set; }
-		//public override bool Equals(object? other)
-		//{
-		//	return this.direction_name.Equals((other as Direction).direction_name);
-		//}
-		//public override int GetHashCode()
-		//{
-		//	return HashCode.Combine(direction_name);
-		//}
+		
+		//Navigation properties:
+		public List<Group> Groups { get; set; } = new List<Group>();
 	}
 }
