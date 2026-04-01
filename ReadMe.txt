@@ -16,10 +16,13 @@ https://demos.blazorbootstrap.com/getting-started
 https://docs.blazorbootstrap.com/getting-started/blazor-webapp-auto-global-net-8
 https://demos.blazorbootstrap.com/theme-switcher
 
+TOREAD:
+1. HTML-helpers;
+
 TODO:
-1. При создании/редактировании группы направление обучения должно выбираться через выпадающий список;
+1. При создании/редактировании группы направление обучения должно выбираться через выпадающий список [https://learn.microsoft.com/en-us/aspnet/core/blazor/forms/input-components?view=aspnetcore-10.0];
 2. При создании/редактировании группы учебные дни должны выбираться налочками;
-3. Начало должно отображаться НЕ как дата, а как время;
+3. Начало должно отображаться НЕ как дата, а как время [https://stackoverflow.com/questions/64052566/is-there-any-blazor-timepicker-and-colorpicker#:~:text=You%20can%20use%20the%20built%20in%20time%20picker%20like%20this%3A];
 
 DONE:
 1. В проекте 'Blazor\Movies' применить стороннюю тему (внешний вид);
