@@ -10,4 +10,4 @@ for (int i = 0; i < words.Length; i++)
 {
 	Console.Write($"{words[i]} ");
 }
-Console.WriteLine(null);
+//Console.WriteLine(null);
