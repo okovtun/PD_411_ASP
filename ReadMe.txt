@@ -16,6 +16,9 @@ https://demos.blazorbootstrap.com/getting-started
 https://docs.blazorbootstrap.com/getting-started/blazor-webapp-auto-global-net-8
 https://demos.blazorbootstrap.com/theme-switcher
 
+NavMenu:
+https://blazor-university.com/routing/navigating-our-app-via-html/
+
 TOREAD:
 1. HTML-helpers;
 
