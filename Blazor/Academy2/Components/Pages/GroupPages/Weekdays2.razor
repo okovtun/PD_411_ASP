@@ -1,0 +1,58 @@
+﻿@using Academy2.Models;
+@rendermode InteractiveServer
+
+<h4>Weekdays</h4>
+
+@* <ul class="weekdays form-control">
+	@for (int i = 0; i < 7; i++)
+	{
+		<li>
+			<InputCheckbox @bind-Value="days[i]" @onchange="e => Compress()" id="@DAYNAMES[i]" />
+			<label for="@DAYNAMES[i]">@DAYNAMES[i]</label>
+		</li>
+	}
+</ul> *@
+<ul class="weekdays form-control">
+	@for (int i = 0; i < 7; i++)
+	{
+		<li>
+			<InputCheckbox Value="days[i]"
+						   ValueChanged="@(Compress)"
+						   ValueExpression="() => days[i]"
+						   id="@DAYNAMES[i]" />
+			<label for="@DAYNAMES[i]">@DAYNAMES[i]</label>
+		</li>
+	}
+</ul>
+
+
+
+<p>Текущее значение mask: @mask</p>
+<p>Текущее значение learning_days: @Group.learning_days</p>
+
+@code {
+	readonly string[] DAYNAMES = { "Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс" };
+	private bool[] days = new bool[7];
+
+	[Parameter] public Group Group { get; set; }
+
+	protected override void OnParametersSet()
+	{
+		// Раскодируем значение из Group.learning_days в массив чекбоксов
+		for (int i = 0; i < 7; i++)
+		{
+			days[i] = (Group.learning_days & (1 << i)) != 0;
+		}
+	}
+	int mask;
+	private void Compress()
+	{
+		mask = 0;
+		for (int i = 0; i < 7; i++)
+		{
+			if (days[i])
+				mask |= 1 << i;
+		}
+		Group.learning_days = mask;
+	}
+}

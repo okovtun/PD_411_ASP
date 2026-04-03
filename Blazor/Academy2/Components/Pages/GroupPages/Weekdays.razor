@@ -1,14 +1,60 @@
-﻿<h3>Weekdays</h3>
+﻿@using Academy2.Models;
+@* @rendermode InteractiveServer *@
 
-<ul class="weekdays">
-	@for (int i = 0; i < 7; i++)
-	{
-		<li><InputCheckbox @bind-Value="learning_days[i]" />@DAYNAMES[i]</li>
-	}
-</ul>
+<h4>Weekdays</h4>
+<div>
+	<ul class="weekdays form-control">
+		@for (int i = 0; i < 7; i++)
+		{
+			<li>
+				@* <InputCheckbox @bind-Value="learning_days[i]" @onchange="Compress" id="@DAYNAMES[i]" /> *@
+				<InputCheckbox @bind-Value="learning_days[i]" @bind-Value:event="onchange" @onclick="e => Compress()" />
+				<label for="@DAYNAMES[i]">@DAYNAMES[i]</label>
+			</li>
+		}
+	</ul>
+	<ValidationMessage For="() => Group.learning_days" class="text-danger" />
+</div>
+@* <button @onclick="Compress">Apply</button> *@
+<div class="mb-3">
+	<label for="learning_days" class="form-label">learning_days:</label>
+	<InputNumber id="learning_days" @bind-Value="mask" class="form-control" />
+	<ValidationMessage For="() => mask" class="text-danger" />
+</div>
 
 @code
 {
 	readonly string[] DAYNAMES = { "Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс" };
 	bool[] learning_days = new bool[7];
+	[Parameter]
+	public Group Group { get; set; }
+	// public Weekdays()
+	// {
+	// 	Group.learning_days = 123;	
+	// }
+
+	// public Weekdays(Group group)
+	// {
+	// 	this.group = group;
+	// }
+		int mask = 0;
+	// void Compress()
+	// {
+	// 	//int[] learning_days = new int[7];
+	// 	for (byte i = 0; i < 7; i++)
+	// 	{
+	// 		//learning_days[i] = Convert.ToInt32(this.learning_days[i]);
+	// 		mask |= 1 << ((i & Convert.ToByte(learning_days[i])) + 1);
+	// 	}
+	// }
+	private void Compress()
+	{
+		mask = 0;
+		for (int i = 0; i < 7; i++)
+		{
+			if (learning_days[i])
+				mask |= 1 << i;
+		}
+		Group.learning_days = mask;
+	}
 }
