@@ -1,6 +1,9 @@
 ﻿https://github.com/okovtun/PD_411_ASP.git
 https://www.youtube.com/playlist?list=PLeqyOOqxeiIOomneIs-QvkQFqTkBUdJdo
 
+HTML Standard:
+https://html.spec.whatwg.org/multipage/
+
 Appearance:
 https://uiverse.io/elements
 https://ant.design/components/divider
