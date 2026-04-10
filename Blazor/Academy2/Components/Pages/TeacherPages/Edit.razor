@@ -21,7 +21,7 @@ else
 		<div>
 			<EditForm method="post" Model="Teacher" OnValidSubmit="UpdateTeacher" FormName="edit" Enhance>
 				<DataAnnotationsValidator />
-				<ValidationSummary role="alert"/>
+				<ValidationSummary role="alert" />
 				<div class="human-container">
 					<div class="col-md-4">
 						<input type="hidden" name="Teacher.teacher_id" value="@Teacher.teacher_id" />
@@ -77,9 +77,20 @@ else
 						</div>
 					</div>
 					<div class="photo-container">
-						<Photo url="@url" />
-						@url.Name
+						@if (Teacher.photo != null)
+						{
+							<Photo @rendermode="InteractiveServer" url="@url" image="@Teacher.photo" />
+							<img src="data:image/jpeg;base64,@Convert.ToBase64String(Teacher.photo)" alt="Photo" />
+						}
+						@* <img src="@url" /> *@
+						@* @url.Name *@
 						<InputFile OnChange="LoadPhoto" />
+					</div>
+					<div>
+						<p>Taken from wikpedia</p>
+						<img src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAUA
+    AAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO
+        9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot" />
 					</div>
 				</div>
 				<button type="submit" class="btn btn-primary">Save</button>
@@ -98,52 +109,57 @@ else
 
 	[SupplyParameterFromForm]
 	private Teacher? Teacher { get; set; }
-	IBrowserFile url { get; set; }
-	void LoadPhoto(InputFileChangeEventArgs e)
+	IBrowserFile url { get; set; } = default!;
+	async Task LoadPhoto(InputFileChangeEventArgs e)
 	{
 		url = e.File;
+		url.OpenReadStream();
+		MemoryStream ms = new MemoryStream();
+		await url.OpenReadStream().CopyToAsync(ms);
+		byte[] raw_data = ms.ToArray();
+		Teacher.photo = raw_data;
 	}
 
-    protected override async Task OnInitializedAsync()
-    {
-        using var context = DbFactory.CreateDbContext();
-        Teacher ??= await context.Teachers.FirstOrDefaultAsync(m => m.teacher_id == teacher_id);
+	protected override async Task OnInitializedAsync()
+	{
+		using var context = DbFactory.CreateDbContext();
+		Teacher ??= await context.Teachers.FirstOrDefaultAsync(m => m.teacher_id == teacher_id);
 
-        if (Teacher is null)
-        {
-            NavigationManager.NavigateTo("notfound");
-        }
-    }
+		if (Teacher is null)
+		{
+			NavigationManager.NavigateTo("notfound");
+		}
+	}
 
-    // To protect from overposting attacks, enable the specific properties you want to bind to.
-    // For more information, see https://learn.microsoft.com/aspnet/core/blazor/forms/#mitigate-overposting-attacks.
-    private async Task UpdateTeacher()
-    {
-        using var context = DbFactory.CreateDbContext();
-        context.Attach(Teacher!).State = EntityState.Modified;
+	// To protect from overposting attacks, enable the specific properties you want to bind to.
+	// For more information, see https://learn.microsoft.com/aspnet/core/blazor/forms/#mitigate-overposting-attacks.
+	private async Task UpdateTeacher()
+	{
+		using var context = DbFactory.CreateDbContext();
+		context.Attach(Teacher!).State = EntityState.Modified;
 
-        try
-        {
-            await context.SaveChangesAsync();
-        }
-        catch (DbUpdateConcurrencyException)
-        {
-            if (!TeacherExists(Teacher!.teacher_id))
-            {
-                NavigationManager.NavigateTo("notfound");
-            }
-            else
-            {
-                throw;
-            }
-        }
+		try
+		{
+			await context.SaveChangesAsync();
+		}
+		catch (DbUpdateConcurrencyException)
+		{
+			if (!TeacherExists(Teacher!.teacher_id))
+			{
+				NavigationManager.NavigateTo("notfound");
+			}
+			else
+			{
+				throw;
+			}
+		}
 
-        NavigationManager.NavigateTo("/teachers");
-    }
+		NavigationManager.NavigateTo("/teachers");
+	}
 
-    private bool TeacherExists(int teacher_id)
-    {
-        using var context = DbFactory.CreateDbContext();
-        return context.Teachers.Any(e => e.teacher_id == teacher_id);
-    }
+	private bool TeacherExists(int teacher_id)
+	{
+		using var context = DbFactory.CreateDbContext();
+		return context.Teachers.Any(e => e.teacher_id == teacher_id);
+	}
 }

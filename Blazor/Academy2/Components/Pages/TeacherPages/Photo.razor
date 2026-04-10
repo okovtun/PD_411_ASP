@@ -1,8 +1,10 @@
 ﻿<h3>Photo</h3>
 
-<img src="@url" alt="Photo" />
+<img src="data:image/png;base64, @Convert.ToBase64String(image)" alt="Photo" />
 
 @code {
 	[Parameter]
 	public IBrowserFile url { get; set; }
+	[Parameter]
+	public byte[] image { get; set; } = default!;
 }
