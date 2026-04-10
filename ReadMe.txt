@@ -31,6 +31,7 @@ TODO:
 TODO:
 1. На страницах 'StudentCreate' и 'StudentEdit' должндолжна быть возможность загрузки фото студента в Базу;
 2. На страницах 'StudentDetails' и 'StudentEdit' должно отображаться фото студента, загруженное из Базы;
+!!!	https://learn.microsoft.com/en-us/aspnet/core/blazor/file-uploads?view=aspnetcore-10.0	!!!
 
 DONE:
 1. При создании/редактировании группы направление обучения должно выбираться через выпадающий список [https://learn.microsoft.com/en-us/aspnet/core/blazor/forms/input-components?view=aspnetcore-10.0];
