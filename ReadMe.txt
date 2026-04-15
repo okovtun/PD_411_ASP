@@ -26,9 +26,12 @@ TOREAD:
 1. HTML-helpers;
 
 TODO:
+Добавить лисциплину для преподавателя.
+
+DONE:
 1. Как применить один CSS-файл к разным компонентам?
 
-TODO:
+DONE:
 1. На страницах 'StudentCreate' и 'StudentEdit' должндолжна быть возможность загрузки фото студента в Базу;
 2. На страницах 'StudentDetails' и 'StudentEdit' должно отображаться фото студента, загруженное из Базы;
 !!!	https://learn.microsoft.com/en-us/aspnet/core/blazor/file-uploads?view=aspnetcore-10.0	!!!
