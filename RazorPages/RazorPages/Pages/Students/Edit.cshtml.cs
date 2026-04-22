@@ -25,49 +25,74 @@ namespace RazorPages.Pages.Students
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+			if(id==null)return NotFound();
+			Student = await _context.Students.FindAsync(id);
+			return Student==null ? NotFound() : Page();
 
-            var student =  await _context.Students.FirstOrDefaultAsync(m => m.ID == id);
-            if (student == null)
-            {
-                return NotFound();
-            }
-            Student = student;
-            return Page();
-        }
+			//if (id == null)
+			//{
+			//	return NotFound();
+			//}
+
+			////Student student = await _context.Students.FirstOrDefaultAsync(m => m.ID == id);
+
+			//Student = await _context.Students.FindAsync(id);
+			//if(Student == null)return NotFound();
+
+			////Student student = await _context.Students.FindAsync(id);
+			////if (student == null)
+			////{
+			////	return NotFound();
+			////}
+			////Student = student;
+			//return Page();
+		}
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more information, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
-        {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+        //public async Task<IActionResult> OnPostAsync()
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return Page();
+        //    }
 
-            _context.Attach(Student).State = EntityState.Modified;
+        //    _context.Attach(Student).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!StudentExists(Student.ID))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        await _context.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!StudentExists(Student.ID))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return RedirectToPage("./Index");
-        }
+        //    return RedirectToPage("./Index");
+        //}
+		public async Task<IActionResult> OnPostAsync(int id)
+		{
+			RazorPages.Models.Student studentToUpdate = await _context.Students.FindAsync(id);
+			if(studentToUpdate == null) return NotFound();
+
+			if (await TryUpdateModelAsync<Student>(
+				studentToUpdate,
+				"student", s => s.FirstName, s => s.LastName, s => s.EnrollmentDate)
+				)
+			{ 
+				await _context.SaveChangesAsync();
+				return RedirectToPage("./Details", new { id = studentToUpdate.ID });
+			}
+
+			return Page();
+		}
 
         private bool StudentExists(int id)
         {
