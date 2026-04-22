@@ -13,6 +13,7 @@ namespace RazorPages.Pages.Students
     public class CreateModel : PageModel
     {
         private readonly RazorPages.Data.ContosoUniversityContext _context;
+		public string ErrorMessage { get; set; }
 
         public CreateModel(RazorPages.Data.ContosoUniversityContext context)
         {
@@ -30,15 +31,30 @@ namespace RazorPages.Pages.Students
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+			RazorPages.Models.Student emptyStudent = new Student();
+			if (await TryUpdateModelAsync<Student>(
+				emptyStudent,
+				"student",
+				s => s.FirstName, s => s.LastName, s => s.EnrollmentDate)
+				)
+			{
+				_context.Students.Add(emptyStudent);
+				await _context.SaveChangesAsync();
+				return RedirectToPage("./Details", new { id = emptyStudent.ID });
+				//return RedirectToPage($"Students/Details?id={emptyStudent.ID}");
+			}
+			return RedirectToPage("./Index");
+			
+			
+			/*if (!ModelState.IsValid)
+			{
+				return Page();
+			}
 
-            _context.Students.Add(Student);
-            await _context.SaveChangesAsync();
+			_context.Students.Add(Student);
+			await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
-        }
+			return RedirectToPage("./Index");*/
+		}
     }
 }
