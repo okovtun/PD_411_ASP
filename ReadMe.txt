@@ -22,6 +22,10 @@ https://demos.blazorbootstrap.com/theme-switcher
 NavMenu:
 https://blazor-university.com/routing/navigating-our-app-via-html/
 
+ASP.NET HOSTING:
+https://dreamhosters.in/free-asp-net/
+https://www.thecrazyprogrammer.com/2017/03/free-asp-net-hosting.html
+
 TOREAD:
 1. HTML-helpers;
 
