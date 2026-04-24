@@ -33,8 +33,9 @@ namespace RazorPages.Pages.Students
 		//Pagination:
 		readonly IConfiguration configuration;
 		public PaginatedList<Student> Students { get; set; }
+		public int PageSize;
 
-		public async Task OnGetAsync(string sortOrder, string currentFilter, string searchString, int? pageIndex)
+		public async Task OnGetAsync(string sortOrder, string currentFilter, string searchString, int? pageIndex,  int pageSize=5)
 		{
 			CurrectSort = sortOrder;
 			NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";  //descending
@@ -63,8 +64,9 @@ namespace RazorPages.Pages.Students
 			}
 			//Class - обычный класс;
 			//Class<Type> - шаблонный класс;
-			int pageSize = configuration.GetValue("PageSize", 10);
-			Students = await PaginatedList<Student>.CreateAsync(students.AsNoTracking(), pageIndex ?? 1, pageSize);
+			//int pageSize = configuration.GetValue("PageSize", 10);
+			PageSize = pageSize;
+			Students = await PaginatedList<Student>.CreateAsync(students.AsNoTracking(), pageIndex ?? 1, PageSize);
 			//Students = await students.AsNoTracking().ToListAsync();
 			//Students = await _context.Students.ToListAsync();
 		}
