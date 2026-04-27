@@ -3,6 +3,7 @@ https://www.youtube.com/playlist?list=PLeqyOOqxeiIOomneIs-QvkQFqTkBUdJdo
 
 HTML Standard:
 https://html.spec.whatwg.org/multipage/
+https://www.digitalapi.ai/blogs/understanding-rest-api-http-methods-get-post-put-delete
 
 Appearance:
 https://uiverse.io/elements
@@ -33,6 +34,10 @@ TODO:
 1. Поискать хостинг для ASP.NET;
 
 TODO:
+1. Проверить DataAnnotations: Display(Name="") и DisplayName("") в Blazor\Academy2;
+2. В проекте 'Blazor\Academy2' вместо даты рождения вывести возраст студентов и преподавателей;
+
+DONE:
 1. В Solution 'RazorPages' добавить проект 'Academy';
 2. В проекте 'Academy' реализовать весь функционал из 'Blazor\Academy2';
 
