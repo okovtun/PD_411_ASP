@@ -7,6 +7,7 @@ namespace Academy2.Models
 	{
 		
 		[Required]
+		[Display(Name = "Фамилия")]
 		public string last_name { get; set; }
 		[Required]
 		public string first_name { get; set; }

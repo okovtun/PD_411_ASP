@@ -36,6 +36,7 @@ TODO:
 TODO:
 1. Проверить DataAnnotations: Display(Name="") и DisplayName("") в Blazor\Academy2;
 2. В проекте 'Blazor\Academy2' вместо даты рождения вывести возраст студентов и преподавателей;
+3. https://learn.microsoft.com/en-us/ef/core/modeling/#use-fluent-api-to-configure-a-model
 
 DONE:
 1. В Solution 'RazorPages' добавить проект 'Academy';
