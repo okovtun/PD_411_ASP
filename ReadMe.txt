@@ -35,8 +35,11 @@ TODO:
 1. Поискать хостинг для ASP.NET;
 
 TODO:
+1. Подумать над курсачем по WebDev;
+
+DONE:
 1. Проверить DataAnnotations: Display(Name="") и DisplayName("") в Blazor\Academy2;	//Ответ Microsoft: Ждите обновлений ;-)
-2. В проекте 'Blazor\Academy2' вместо даты рождения вывести возраст студентов и преподавателей;
+2. В проекте 'Blazor\Academy2' вместо даты рождения вывести возраст студентов и преподавателей;		DONE
 3. https://learn.microsoft.com/en-us/ef/core/modeling/#use-fluent-api-to-configure-a-model
 
 DONE:
