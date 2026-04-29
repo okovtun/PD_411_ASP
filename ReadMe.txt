@@ -4,6 +4,7 @@ https://www.youtube.com/playlist?list=PLeqyOOqxeiIOomneIs-QvkQFqTkBUdJdo
 HTML Standard:
 https://html.spec.whatwg.org/multipage/
 https://www.digitalapi.ai/blogs/understanding-rest-api-http-methods-get-post-put-delete
+https://httpd.apache.org/docs/trunk/en/ssl/ssl_intro.html
 
 Appearance:
 https://uiverse.io/elements
@@ -34,7 +35,7 @@ TODO:
 1. Поискать хостинг для ASP.NET;
 
 TODO:
-1. Проверить DataAnnotations: Display(Name="") и DisplayName("") в Blazor\Academy2;
+1. Проверить DataAnnotations: Display(Name="") и DisplayName("") в Blazor\Academy2;	//Ответ Microsoft: Ждите обновлений ;-)
 2. В проекте 'Blazor\Academy2' вместо даты рождения вывести возраст студентов и преподавателей;
 3. https://learn.microsoft.com/en-us/ef/core/modeling/#use-fluent-api-to-configure-a-model
 
