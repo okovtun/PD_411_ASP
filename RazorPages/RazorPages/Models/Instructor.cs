@@ -33,3 +33,4 @@ namespace RazorPages.Models
 		public OfficeAssignment OfficeAssignment { get; set; }
 	}
 }
+//TODO: https://learn.microsoft.com/en-us/aspnet/core/data/ef-rp/read-related-data?view=aspnetcore-10.0&tabs=visual-studio#:~:text=Update%20Pages/Instructors/Index.cshtml.cs%20with%20the%20following%20code%3A

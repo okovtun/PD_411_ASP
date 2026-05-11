@@ -28,6 +28,9 @@ ASP.NET HOSTING:
 https://dreamhosters.in/free-asp-net/
 https://www.thecrazyprogrammer.com/2017/03/free-asp-net-hosting.html
 
+ASP.NET Video:
+https://archive.org/details/a-gentle-introduction-to-asp.-net-web-forms-for-beginners/A+Gentle+Introduction+To+ASP.NET+Web+Forms+For+Beginners/01+Course+Information/001+Welcome.mp4
+
 TOREAD:
 1. HTML-helpers;
 
@@ -36,6 +39,7 @@ TODO:
 
 TODO:
 1. Подумать над курсачем по WebDev;
+2. При желании добить RazorPages по мануалу;
 
 DONE:
 1. Проверить DataAnnotations: Display(Name="") и DisplayName("") в Blazor\Academy2;	//Ответ Microsoft: Ждите обновлений ;-)
