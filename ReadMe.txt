@@ -27,6 +27,7 @@ https://blazor-university.com/routing/navigating-our-app-via-html/
 ASP.NET HOSTING:
 https://dreamhosters.in/free-asp-net/
 https://www.thecrazyprogrammer.com/2017/03/free-asp-net-hosting.html
+https://www.monsterasp.net/
 
 ASP.NET Video:
 https://archive.org/details/a-gentle-introduction-to-asp.-net-web-forms-for-beginners/A+Gentle+Introduction+To+ASP.NET+Web+Forms+For+Beginners/01+Course+Information/001+Welcome.mp4
@@ -36,6 +37,7 @@ TOREAD:
 
 TODO:
 1. Поискать хостинг для ASP.NET;
+2. Залить ContosoUniversity на бесплатный хостинг;
 
 TODO:
 1. Подумать над курсачем по WebDev;
