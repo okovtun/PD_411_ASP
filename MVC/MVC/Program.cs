@@ -1,4 +1,11 @@
+using ContosoUniversity.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using MVC.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<MVCContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MVCContext") ?? throw new InvalidOperationException("Connection string 'MVCContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -12,6 +19,15 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+using (IServiceScope scope = app.Services.CreateScope())
+{
+	IServiceProvider services = scope.ServiceProvider;
+	MVCContext context = services.GetRequiredService<MVCContext>();
+	context.Database.EnsureCreated();
+	DbInitializer.Initialize(context);
+}
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

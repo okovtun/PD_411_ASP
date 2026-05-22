@@ -28,6 +28,7 @@ ASP.NET HOSTING:
 https://dreamhosters.in/free-asp-net/
 https://www.thecrazyprogrammer.com/2017/03/free-asp-net-hosting.html
 https://www.monsterasp.net/
+https://beget.com/
 
 ASP.NET Video:
 https://archive.org/details/a-gentle-introduction-to-asp.-net-web-forms-for-beginners/A+Gentle+Introduction+To+ASP.NET+Web+Forms+For+Beginners/01+Course+Information/001+Welcome.mp4
