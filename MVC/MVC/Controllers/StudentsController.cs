@@ -10,20 +10,25 @@ using MVC.Models;
 
 namespace MVC.Controllers
 {
-    public class StudentsController : Controller
-    {
-        private readonly MVCContext _context;
+	public class StudentsController : Controller
+	{
+		private readonly MVCContext _context;
 
-        public StudentsController(MVCContext context)
-        {
-            _context = context;
-        }
+		public StudentsController(MVCContext context)
+		{
+			_context = context;
+		}
 
-        // GET: Students
-        public async Task<IActionResult> Index(string sortOrder, string searchString)
-        {
+		// GET: Students
+		public async Task<IActionResult> Index(string sortOrder, string searchString, string currentFilter, int? pageNumber)
+		{
+			ViewData["CurrentSort"] = sortOrder;
 			ViewData["NameSortParam"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
 			ViewData["DateSortParam"] = sortOrder == "Date" ? "date_desc" : "Date";
+
+			if (searchString != null) pageNumber = 1;
+			else searchString = currentFilter;
+
 			ViewData["CurrentFilter"] = searchString;
 
 			IQueryable<Student> students = from s in _context.Students select s;
@@ -31,50 +36,51 @@ namespace MVC.Controllers
 				students = students.Where(s => s.LastName.Contains(searchString) || s.FirstName.Contains(searchString));
 			switch (sortOrder)
 			{
-				default:			students = students.OrderBy(s => s.LastName);					break;
-				case "name_desc":	students = students.OrderByDescending(s => s.LastName);			break;
-				case "date_desc":	students = students.OrderByDescending(s => s.EnrollmentDate);	break;
-				case "Date":		students = students.OrderBy(s => s.EnrollmentDate);				break;
+				default: students = students.OrderBy(s => s.LastName); break;
+				case "name_desc": students = students.OrderByDescending(s => s.LastName); break;
+				case "date_desc": students = students.OrderByDescending(s => s.EnrollmentDate); break;
+				case "Date": students = students.OrderBy(s => s.EnrollmentDate); break;
+			}
+			int pageSize = 3;
+			return View(await PaginatedList<Student>.CreateAsync(students.AsNoTracking(), pageNumber ?? 1, pageSize));
+			//return View(students);
+			//return View(await _context.Students.ToListAsync());
+		}
+
+		// GET: Students/Details/5
+		public async Task<IActionResult> Details(int? id)
+		{
+			if (id == null)
+			{
+				return NotFound();
 			}
 
-            return View(students);
-            //return View(await _context.Students.ToListAsync());
-        }
-
-        // GET: Students/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var student = await _context.Students
+			var student = await _context.Students
 				.Include(s => s.Enrollments)
 					.ThenInclude(e => e.Course)
 				.AsNoTracking()
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (student == null)
-            {
-                return NotFound();
-            }
+				.FirstOrDefaultAsync(m => m.ID == id);
+			if (student == null)
+			{
+				return NotFound();
+			}
 
-            return View(student);
-        }
+			return View(student);
+		}
 
-        // GET: Students/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
+		// GET: Students/Create
+		public IActionResult Create()
+		{
+			return View();
+		}
 
-        // POST: Students/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,LastName,FirstName,EnrollmentDate")] Student student)
-        {
+		// POST: Students/Create
+		// To protect from overposting attacks, enable the specific properties you want to bind to.
+		// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> Create([Bind("ID,LastName,FirstName,EnrollmentDate")] Student student)
+		{
 			try
 			{
 				if (ModelState.IsValid)
@@ -92,24 +98,24 @@ namespace MVC.Controllers
 					"Невозможно сохранить изменения, обратитесь к системному администратору"
 					);
 			}
-            return View(student);
-        }
+			return View(student);
+		}
 
-        // GET: Students/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+		// GET: Students/Edit/5
+		public async Task<IActionResult> Edit(int? id)
+		{
+			if (id == null)
+			{
+				return NotFound();
+			}
 
-            var student = await _context.Students.FindAsync(id);
-            if (student == null)
-            {
-                return NotFound();
-            }
-            return View(student);
-        }
+			var student = await _context.Students.FindAsync(id);
+			if (student == null)
+			{
+				return NotFound();
+			}
+			return View(student);
+		}
 
 		// POST: Students/Edit/5
 		// To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -117,8 +123,8 @@ namespace MVC.Controllers
 		[HttpPost, ActionName("Edit")]
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> EditPost(int? id)
-		{ 
-			if(id == null) return NotFound();
+		{
+			if (id == null) return NotFound();
 			Student student = await _context.Students.FirstOrDefaultAsync(s => s.ID == id);
 
 			bool success = await TryUpdateModelAsync<Student>
@@ -142,7 +148,7 @@ namespace MVC.Controllers
 
 			return View(student);
 		}
-        /*public async Task<IActionResult> Edit(int id, [Bind("ID,LastName,FirstName,EnrollmentDate")] Student student)
+		/*public async Task<IActionResult> Edit(int id, [Bind("ID,LastName,FirstName,EnrollmentDate")] Student student)
         {
             if (id != student.ID)
             {
@@ -172,33 +178,33 @@ namespace MVC.Controllers
             return View(student);
         }*/
 
-        // GET: Students/Delete/5
-        public async Task<IActionResult> Delete(int? id, bool? saveChangesError = false)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+		// GET: Students/Delete/5
+		public async Task<IActionResult> Delete(int? id, bool? saveChangesError = false)
+		{
+			if (id == null)
+			{
+				return NotFound();
+			}
 
-            var student = await _context.Students
+			var student = await _context.Students
 				.AsNoTracking()
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (student == null)
-            {
-                return NotFound();
-            }
+				.FirstOrDefaultAsync(m => m.ID == id);
+			if (student == null)
+			{
+				return NotFound();
+			}
 			if (saveChangesError.GetValueOrDefault())
 				ViewData["ErrorMessage"] = "Что-то пошло не так, обратитесь к системному администратору";
-            return View(student);
-        }
+			return View(student);
+		}
 
 		// POST: Students/Delete/5
 		[HttpPost, ActionName("Delete")]
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> DeleteConfirmed(int id)
-		{ 
+		{
 			Student student = await _context.Students.FindAsync(id);
-			if(student == null)return RedirectToAction(nameof(Index));
+			if (student == null) return RedirectToAction(nameof(Index));
 
 			try
 			{
@@ -211,7 +217,7 @@ namespace MVC.Controllers
 				return RedirectToAction(nameof(Delete), new { id = id, saveChangesError = true });
 			}
 		}
-        /*public async Task<IActionResult> DeleteConfirmed(int id)
+		/*public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var student = await _context.Students.FindAsync(id);
             if (student != null)
@@ -223,9 +229,9 @@ namespace MVC.Controllers
             return RedirectToAction(nameof(Index));
         }*/
 
-        private bool StudentExists(int id)
-        {
-            return _context.Students.Any(e => e.ID == id);
-        }
-    }
+		private bool StudentExists(int id)
+		{
+			return _context.Students.Any(e => e.ID == id);
+		}
+	}
 }
