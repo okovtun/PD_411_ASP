@@ -33,10 +33,21 @@ https://beget.com/
 ASP.NET Video:
 https://archive.org/details/a-gentle-introduction-to-asp.-net-web-forms-for-beginners/A+Gentle+Introduction+To+ASP.NET+Web+Forms+For+Beginners/01+Course+Information/001+Welcome.mp4
 
+General:
+https://cogentinfo.com/resources/what-are-crud-operations#
+
+WebAPI tutorial:
+https://learn.microsoft.com/en-us/aspnet/core/fundamentals/apis?view=aspnetcore-10.0
+https://learn.microsoft.com/en-us/shows/dotnet-aspire-for-beginners/
+
 TOREAD:
 1. HTML-helpers;
 
 TODO:
+1. Установить VMware Workstation;
+2. 
+
+DONE:
 1. Поискать хостинг для ASP.NET;
 2. Залить ContosoUniversity на бесплатный хостинг;
 

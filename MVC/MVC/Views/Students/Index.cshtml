@@ -27,12 +27,14 @@
 				@* @Html.DisplayNameFor(model => model.ID) *@
 			</th>
 			<th>
-				<a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParam"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">LastName</a>
+				<a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParam"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">
+					@Html.DisplayNameFor(model => model.First().LastName)
+				</a>
 				@* <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParam"]">@Html.DisplayNameFor(model => model.LastName)</a> *@
 			</th>
 
 			<th>
-				FirstName
+					@Html.DisplayNameFor(model => model.First().FirstName)
 				@* @Html.DisplayNameFor(model => model.FirstName) *@
 			</th>
 			<th>
